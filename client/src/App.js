@@ -22,7 +22,7 @@ function App() {
   const [empleadosList, setEmpleadosList] = useState([]);
 
   const add = () => {
-    Axios.post('http://localhost:3001/create', {
+    Axios.post('http://aws.connect.psdb.cloud:3001/create', {
       nombre: nombre,
       edad: edad,
       pais: pais,
@@ -56,7 +56,7 @@ function App() {
   };
 
   const update = () => {
-    Axios.put('http://localhost:3001/update', {
+    Axios.put('http://aws.connect.psdb.cloud:3001/update', {
       id: id,
       nombre: nombre,
       edad: edad,
@@ -108,7 +108,7 @@ function App() {
       cancelButtonText: 'Cancelar',
     }).then((result) => {
       if (result.isConfirmed) {
-        Axios.delete(`http://localhost:3001/delete/${val.id}`)
+        Axios.delete(`http://aws.connect.psdb.cloud:3001/delete/${val.id}`)
           .then(() => {
             getEmpleados();
             limpiarCampos();
@@ -155,9 +155,11 @@ function App() {
   };
 
   const getEmpleados = () => {
-    Axios.get('http://localhost:3001/empleados').then((response) => {
-      setEmpleadosList(response.data);
-    });
+    Axios.get('http://aws.connect.psdb.cloud:3001/empleados').then(
+      (response) => {
+        setEmpleadosList(response.data);
+      }
+    );
   };
 
   getEmpleados();
